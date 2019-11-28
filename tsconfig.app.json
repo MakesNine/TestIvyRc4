@@ -9,7 +9,7 @@
     "src/polyfills.ts"
   ],
   "angularCompilerOptions": {
-    "enableIvy": true
+    "enableIvy": false
  },
   "include": [
     "src/**/*.d.ts"
