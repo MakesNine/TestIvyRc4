@@ -59,7 +59,7 @@ export class Map2Component implements OnInit, OnDestroy {
       },
       pathToImages: 'assets/images/',
     };
-    this.chart = this.AmCharts.makeChart('chartdiv', this.options);
+    this.chart = this.AmCharts.makeChart('chartdiv2', this.options);
 
   }
 
