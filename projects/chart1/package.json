@@ -1,9 +1,0 @@
-{
-  "name": "chart1",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^9.0.0-rc.4",
-    "@angular/core": "^9.0.0-rc.4",
-    "tslib": "^1.10.0"
-  }
-}
