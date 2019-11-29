@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, HostBinding, AfterContentInit, AfterViewChecked } from '@angular/core';
 import { AmChartsService, AmChart } from '@amcharts/amcharts3-angular';
 import { slideInDownAnimation } from '../animations';
 
@@ -8,7 +8,7 @@ import { slideInDownAnimation } from '../animations';
   styleUrls: ['./map1.component.css'],
   animations: [slideInDownAnimation]
 })
-export class Map1Component implements OnInit, OnDestroy {
+export class Map1Component implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
 
@@ -23,6 +23,21 @@ export class Map1Component implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.AmCharts.destroyChart(this.chart);
+  }
+
+  ngAfterViewInit() {
+    const elements = document.querySelectorAll('#chartdiv');
+    elements.forEach( el => console.log(`AfterViewInit in map1 target= ${el.getAttribute('target')}`));
+  }
+
+  ngAfterViewChecked() {
+    const elements = document.querySelectorAll('#chartdiv');
+    elements.forEach( el => console.log(`AfterViewChecked in map1 target= ${el.getAttribute('target')}`));
+  }
+
+  public logMapsDiv() {
+    const elements = document.querySelectorAll('#chartdiv');
+    elements.forEach( el => console.log(`LogMapsDiv in map1 target= ${el.getAttribute('target')}`));
   }
 
   private createChart() {
@@ -58,6 +73,10 @@ export class Map1Component implements OnInit, OnDestroy {
       },
       pathToImages: 'assets/images/',
     };
+
+    const elements = document.querySelectorAll('#chartdiv');
+    elements.forEach( el => console.log(`onInit in map1 target= ${el.getAttribute('target')}`));
+
     this.chart = this.AmCharts.makeChart('chartdiv', this.options);
 
   }
