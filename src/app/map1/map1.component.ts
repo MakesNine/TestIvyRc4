@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, HostBinding, AfterContentInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, HostBinding, AfterContentInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { AmChartsService, AmChart } from '@amcharts/amcharts3-angular';
 import { slideInDownAnimation } from '../animations';
 
@@ -11,6 +11,8 @@ import { slideInDownAnimation } from '../animations';
 export class Map1Component implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked {
   @HostBinding('@routeAnimation') routeAnimation = true;
   @HostBinding('style.display') display = 'block';
+
+  @ViewChild('chartdiv', {static: true, read: ElementRef}) chartdiv: ElementRef;
 
   private options: any;
   private chart: AmChart;
@@ -77,7 +79,9 @@ export class Map1Component implements OnInit, OnDestroy, AfterViewInit, AfterVie
     const elements = document.querySelectorAll('#chartdiv');
     elements.forEach( el => console.log(`onInit in map1 target= ${el.getAttribute('target')}`));
 
-    this.chart = this.AmCharts.makeChart('chartdiv', this.options);
+    console.log(`OnInit in Map1: @ViewChild nativeElement target = ${this.chartdiv.nativeElement.getAttribute('target')}`);
+    // this.chart = this.AmCharts.makeChart('chartdiv', this.options);
+    this.chart = this.AmCharts.makeChart(this.chartdiv.nativeElement, this.options);
 
   }
 
